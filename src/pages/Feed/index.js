@@ -10,10 +10,8 @@ export default function Feed(){
 
     useEffect(() => {
         async function loadPosts(){
-            const user_id = localStorage.getItem('user');
-            const response = await api.get('/posts', {
-                headers: { user_id }
-            });
+            //const user_id = localStorage.getItem('user');
+            const response = await api.get('/posts');
 
             setPosts(response.data);
         }
@@ -27,6 +25,7 @@ export default function Feed(){
         <ul className="post-list">
             {posts.map(post => (
                 <li key={post._id}>
+                    <strong>{post.titulo}</strong>
                     <header style={{ backgroundImage: `url(${post.imagem_url})`}} />
                 </li>
             ))}

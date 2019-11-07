@@ -1,5 +1,5 @@
 ul.post-list{
-    width: 100%;
+    width: 200%;
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -13,8 +13,8 @@ ul.post-list li{
 }
 
 ul.post-list li header{
-    width: 100%;
-    height: 120px;
+    width: 300%;
+    height: 320px;
     background-size: cover;
     border-radius: 4px;
 }

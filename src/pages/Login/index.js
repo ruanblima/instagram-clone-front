@@ -13,8 +13,6 @@ export default function Login({ history }) {
       const response = await api.post('/sessions', { 
         email 
     })
-    .then(response => (console.log(response))
-    .catch(console.log('erro')));
   
       const { _id } = response.data;
   

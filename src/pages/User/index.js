@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import logo from '../../assets/Logo.png';
 import api from '../../services/api';
-//import axios from require('axios');
-
 
 export default function User({ history }) {
 
@@ -14,25 +12,12 @@ export default function User({ history }) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const data = new FormData();
-        console.log(`Nome: ${nome} - Email: ${email} - Senha ${senha} - Telefone ${telefone}`);
 
-        data.append('email', email);
-        data.append('nome', nome);
-        data.append('senha', senha);
-        data.append('telefone', telefone);
-
-        //  const user = (nome, email, senha, telefone) => {
-        //      axios.post('http://localhost:3333/api/users', { nome: nome, email: email, senha: senha, telefone: telefone})
-        //     .then(function(response){
-        //         console.log('salvo')
-        //         props.history.push('/');
-        //     })
-        //     }
-         const response = await api.post('/users', data);
-         history.push('/');
+          await api.post('/users', {nome: nome, email: email, senha: senha, telefone: telefone});
+          history.push('/');
          
     }
+
 
     return (
         <>
@@ -70,7 +55,6 @@ export default function User({ history }) {
                 />
 
                 <label htmlFor="senha">SENHA</label>
-
                 <input
                     id="senha"
                     type="password"
