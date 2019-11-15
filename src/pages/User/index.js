@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import logo from '../../assets/Logo.png';
 import api from '../../services/api';
+import './styles.css';
 
 export default function User({ history }) {
 
@@ -10,18 +11,24 @@ export default function User({ history }) {
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
 
-          await api.post('/users', {nome: nome, email: email, senha: senha, telefone: telefone});
-          history.push('/');
-         
+        //Chamando o método de criar usuário
+        api.post('/users', { nome: nome, email: email, senha: senha, telefone: telefone })
+            .then((response) => {
+                history.push('/');
+                //Tratando o erro de -email já cadastrado
+            }).catch((error) => {
+                alert("E-mail já cadastrado!");
+            });
+
     }
 
 
     return (
-        <>
-            <div className="container-center">
+        <div className="user">
+            <div className="user-center">
                 <img src={logo} alt="Logo" className="img" />
             </div>
 
@@ -64,9 +71,9 @@ export default function User({ history }) {
                 />
 
                 <button className="btn" type="submit">Cadastrar</button>
-                
+
 
             </form>
-        </>
+        </div>
     );
 }

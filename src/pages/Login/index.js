@@ -2,56 +2,66 @@ import React, { useState } from 'react';
 import logo from '../../assets/Logo.png';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
+import './styles.css';
+
 
 export default function Login({ history }) {
 
-    const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
-    async function handleSubmit(event){
-      event.preventDefault();
-  
-      const response = await api.post('/sessions', { 
-        email 
-    })
-  
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    //Chamando o método da api para logar
+    api.post('/sessions', {
+      email, senha
+    }).then((response) => {
       const { _id } = response.data;
-  
+
       localStorage.setItem('user', _id);
 
-      history.push('/feed');    
-    }
+      history.push('/feed');
+      //Tratando o erro, caso o e-mail ou senha estejam incorretos
+    }).catch((error) => {
+      alert("Seu e-email ou senha estão incorretos!");
+    });
 
-    return (
-        <>
-            <div className="container-center">
-                <img src={logo} alt="Logo" className="img" />
-            </div>
+  }
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">E-MAIL</label>
-                <input
-                    id="email"
-                    type="email"
-                    placeholder="Digite seu e-mail"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)}
-                />
+  return (
+    <div className="login">
+      <div className="login-center">
+        <img src={logo} alt="Logo" className="img" />
+      </div>
 
-                <label htmlFor="email">SENHA</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">E-MAIL</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Digite seu e-mail"
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+        />
 
-                <input
-                    id="senha"
-                    type="password"
-                    placeholder="Digite sua senha"
-                />
+        <label htmlFor="email">SENHA</label>
 
-                <button className="btn" type="submit">Entrar</button>
+        <input
+          id="senha"
+          type="password"
+          placeholder="Digite sua senha"
+          value={senha}
+          onChange={event => setSenha(event.target.value)}
+        />
 
-                <Link className="link" to="user">
-                Cadastrar-se
+        <button className="btn" type="submit">Entrar</button>
+
+        <Link className="link" to="user">
+          Cadastrar-se
                 </Link>
 
-            </form>
-        </>
-    );
+      </form>
+    </div>
+  );
 }
