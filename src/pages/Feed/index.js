@@ -46,13 +46,10 @@ export default function Feed() {
                         <li key={post._id}>
                             <strong>{post.titulo}</strong>
                             <img src={post.imagem} alt="Logo" className="img" />
-                            <input
+                             {/* <input
                                 onChange={(text) => setComment(text)}
-                            />
-                            <div className="row">
-                            <button className="button-feed" onClick="" >Curtir</button>
+                            /> */}
                             <button className="button-feed" onClick={() => commentPost(comment, post._id, user_id)} >Comentar</button>
-                            </div>
                             
                         </li>
                     </div>
