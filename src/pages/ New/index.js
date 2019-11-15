@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import camera from '../../assets/camera.png';
+import logo from '../../assets/Logo.png';
 import api from '../../services/api';
 import * as firebase from "firebase";
 
@@ -25,6 +26,7 @@ export default function New({ history }) {
     const [imagem, setImagem] = useState('');
     const [descricao, setDescricao] = useState('');
     const [localizacao, setLocalizacao] = useState('');
+    const [hastags, setHastags] = useState('');
 
     //Método para vizualizar a imagem antes do upload
     const preview = useMemo(() => {
@@ -40,6 +42,7 @@ export default function New({ history }) {
         data.append('titulo', titulo);
         data.append('descricao', descricao);
         data.append('localizacao', localizacao);
+        data.append('hastags', hastags);
 
         //Conexão com o node
         await api.post('/posts', data, {
@@ -69,6 +72,9 @@ export default function New({ history }) {
 
     return (
         <div className="new">
+            <header id="main-header">
+                <img src={logo} alt="Logo" className="img" />
+            </header>
             <form onSubmit={(e) => e.preventDefault()}>
 
                 <label
@@ -99,6 +105,14 @@ export default function New({ history }) {
                     placeholder="Digite a descrição da sua postagem"
                     value={descricao}
                     onChange={event => setDescricao(event.target.value)}
+                />
+
+                <label htmlFor="hastags">Hastags</label>
+                <input
+                    id="hastags"
+                    placeholder="Digite as hastags"
+                    value={hastags}
+                    onChange={event => setHastags(event.target.value)}
                 />
 
                 <label htmlFor="localizacao">Localização</label>

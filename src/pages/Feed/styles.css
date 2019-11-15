@@ -40,8 +40,39 @@ li {
     flex-direction: column;
 }
 
+.feed label{
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.feed ul li label {
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.feed ul li input {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    height: 45px;
+    width: 400px;
+    padding: 0 15px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
 .btn {
-    margin-top: 25px;
+    margin-top: 15px;
     border: 0;
     border-radius: 2px;
     width: 20%;
@@ -59,7 +90,7 @@ li {
 }
 
 .button-feed {
-    margin-top: 25px;
+    margin-top: 15px;
     margin: 20px;
     border: 0;
     border-radius: 2px;
